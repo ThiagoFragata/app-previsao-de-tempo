@@ -37,14 +37,13 @@ export default function Home() {
       // console.log(location.coords.latitude);
       // console.log(location.coords.longitude);
 
-      //https://api.hgbrasil.com/weather?key=64b43dc5&lat=-23.682&lon=-46.875&user_ip=remote
+      //weather?key=64b43dc5&lat=-23.682&lon=-46.875
       const response = await api.get(
-        `weather?key=${key}&lat=${location.coords.latitude}&lon=${location.coords.longitude}`
+        `/weather?key=${key}&lat=${location.coords.latitude}&lon=${location.coords.longitude}`
       );
 
-      // console.log(response.data);
-
       setWeather(response.data);
+
       // END LOCATION
 
       // INIT VERIFICATION IF DAY OUR NIGHT AND APPLICATION BACKGROUND
@@ -77,7 +76,7 @@ export default function Home() {
   // SCREEN OF LOADING
   if (loading) {
     return (
-      <View>
+      <View style={styles.container}>
         <Text style={{ fontSize: 17, fontStyle: "italic" }}>
           Carregando dados ...
         </Text>
@@ -91,7 +90,6 @@ export default function Home() {
       <Header background={background} weather={weather} icon={icon} />
       <Conditions weather={weather} />
       <FlatList
-        showsHorizontalScrollIndicator={false}
         horizontal={true}
         contentContainerStyle={{ paddingBottom: "5%" }}
         style={styles.list}

@@ -35,8 +35,10 @@ export default function Search() {
       setInput("");
       setCity(null);
       Keyboard.dismiss();
+      return;
     }
-    console.log(response.data);
+
+    // console.log(response.data);
     setCity(response.data);
     setInput("");
     Keyboard.dismiss();
@@ -105,7 +107,11 @@ export default function Search() {
         </TouchableOpacity>
       </View>
 
-      {error && <Text style={{ marginTop: 25, fontSize: 18 }}>{error}</Text>}
+      {error && (
+        <Text style={{ marginTop: 25, fontSize: 18, color: "#ff0000" }}>
+          {error}
+        </Text>
+      )}
     </SafeAreaView>
   );
 }
